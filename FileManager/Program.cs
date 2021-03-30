@@ -17,12 +17,13 @@ namespace FileManager
 
             //  Console.SetCursorPosition(1, 1);
 
-           // FileControl.controlCursor();
+            // FileControl.controlCursor();
 
             // FileControl.infoDrivers();
 
-            DrivesControl.controlCursor();
+            // DrivesControl.controlCursor();
 
+            DriveItem.PrintDrives();
 
         }
 
