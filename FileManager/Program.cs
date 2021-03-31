@@ -14,21 +14,121 @@ namespace FileManager
         static void Main(string[] args)
         {
 
+            Console.CursorVisible = false;
 
-            //  Console.SetCursorPosition(1, 1);
+            var manager = new FileTree();
+            
+            ShowList(manager.Items, manager.Selected);
+           // Panel.DrowPanel();// отрисовывает панель но не видно списки
+           
+            while (true)
+            {
+                
+                var inputKey = Console.ReadKey(false);
+                switch (inputKey.Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        manager.Previous();
+                        break;
 
-            // FileControl.controlCursor();
+                    case ConsoleKey.DownArrow:
+                        manager.Next();
+                        break;
 
-            // FileControl.infoDrivers();
+                    case ConsoleKey.Enter:
+                        manager.SelectOpen();
+                        break;
+    
+                      
+                }
+                ShowList(manager.Items, manager.Selected);
+                
+            }
 
-            // DrivesControl.controlCursor();
+        }
+        /// <summary>
+        /// Перерисовка экрана для отображения списка
+        /// </summary>
+        /// <param name="items">Список текущих элементов</param>
+        /// <param name="selected">Выбранный элемент списка</param>
+        static void ShowList(IEnumerable<MainItem> items,MainItem selected = null)
+        {
+            Console.ResetColor();
+            Console.Clear();
 
-            DriveItem.PrintDrives();
+            Panel.DrowPanel();
+
+            int count = 0;
+            foreach (var item in items)
+            {
+                
+
+                if (item.Equals(selected))
+                {
+                    
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.Black;
+                }
+                else
+                {
+
+                    // Console.BackgroundColor = ConsoleColor.Black;
+                    Console.BackgroundColor = ConsoleColor.DarkBlue;
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+
+                count++;
+                Console.SetCursorPosition(2, count);
+                PrintItem(item);
+               
+
+               
+               
+            }
+            Console.ResetColor();
+          
+        }
+
+        /// <summary>
+        /// Вывод на экран строки элемента 
+        /// </summary>
+        /// <param name="item"></param>
+        static void PrintItem(MainItem item)
+        {
+           
+            var name = item.Name.Length <= 50 ? item.Name : $"{item.Name.Substring(0, 47)}...";
+
+            var itemType = item.Size.HasValue ? string.Empty : "dir";
+
+            var size = item.Size.HasValue ? BytesSizeFormat(item.Size.Value) : string.Empty;
+            Console.WriteLine($"{name,-50}{itemType,3}{size,15}");
+
+
 
         }
 
+        /// <summary>
+        /// Форматирование размера
+        /// </summary>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        static string BytesSizeFormat(long size)
+        {
+            string[] suffixes = { "B", "KB", "MB", "TB" };
+            string suffix = suffixes[0];
 
-       
+            for (int i = 0; i < 4; i++)
+            {
+                suffix = suffixes[i];
+                if (size > 1024)
+                {
+                    size /= 1024;
+                }
+                else
+                    break;
+            }
+            return $"{size:N1} {suffix}";
+        }
     }
    
 }

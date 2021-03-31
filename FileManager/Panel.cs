@@ -13,6 +13,7 @@ namespace FileManager
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.BackgroundColor = ConsoleColor.DarkBlue;
+            //Console.BackgroundColor = ConsoleColor.Black;
             Console.Clear();
             Console.SetBufferSize(100, 80);
             
