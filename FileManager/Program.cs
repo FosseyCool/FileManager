@@ -139,8 +139,6 @@ namespace FileManager
 
             var size = item.Size.HasValue ? BytesSizeFormat(item.Size.Value) : string.Empty;
             Console.WriteLine($"{name,-50}{itemType,3}{size,15}");
-
-
         }
 
       
