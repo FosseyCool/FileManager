@@ -19,5 +19,12 @@ namespace FileManager
         /// Размер
         /// </summary>
         public long ? Size { get; set; } = null;
+
+
+
+
+
+
+
     }
 }

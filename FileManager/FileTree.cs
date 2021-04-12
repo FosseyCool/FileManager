@@ -65,7 +65,7 @@ namespace FileManager
         /// Выбор первого элемента текущего списка
         /// </summary>
         public void First()
-        {         
+        {
             Selected = Items [0];
         }
         /// <summary>
@@ -188,8 +188,8 @@ namespace FileManager
                     {
                         File.Delete(Selected.MainPath);
                     }
-                    else
-                    {
+            else
+            {
                         Directory.Delete(Selected.MainPath, true);
                         //удаляем элементы из списка
                         Items.Remove(Selected);
@@ -207,8 +207,8 @@ namespace FileManager
 
 
             }
-            return false;
-        }
+                return false;
+            }
         /// <summary>
         /// Копирует выбранный  элемент,в папку которую указывает пользователь
         /// </summary>
@@ -353,7 +353,7 @@ namespace FileManager
                             Size=File.Exists(entry)?new FileInfo(entry).Length:(long?)null
                         };
                         list.Add(item);
-
+                       
                        
                        
                     }
