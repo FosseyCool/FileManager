@@ -106,12 +106,19 @@ namespace FileManager
                 Selected = Items[index + 1];
             }
         }
-
+        /// <summary>
+        /// Открывает выбранный каталог
+        /// </summary>
+        /// <returns></returns>
         public bool SelectOpen()
         {
             if (Selected!=null)
             {
-                
+                //Записывает путь выбранного каталога в json,для дальнейшего запуска
+                jsonPath = JsonSerializer.Serialize(Selected.MainPath);
+                File.WriteAllText("path.json", jsonPath);
+
+
                 return ChangePath(Selected.MainPath);
             }
             else
@@ -122,16 +129,26 @@ namespace FileManager
 
             
         }
-
+      
         public void Home()
-        {
+        { 
+            //Происходит проверка Json, и запускает из него путь
             if (File.Exists("path.json"))
             {
                 jsonPath = File.ReadAllText("path.json");
+                if (jsonPath=="null")
+                {
+                    FillDisk();
+                    First();
+                }
+                else
+                {
+                    Selected.MainPath = JsonSerializer.Deserialize<string>(jsonPath);
 
-                Selected.MainPath = JsonSerializer.Deserialize<string>(jsonPath);
+                    FillItems(Selected.MainPath);
+                }
 
-                FillItems(Selected.MainPath);
+               
 
             }
             else 
@@ -418,12 +435,7 @@ namespace FileManager
             Items = list.OrderBy(o => o.Name).ToList();
         }
 
-        public void jso()
-        {
-
-            jsonPath = JsonSerializer.Serialize(Selected.MainPath);
-            File.WriteAllText("path.json", jsonPath);
-        }
+      
 
     }
 }

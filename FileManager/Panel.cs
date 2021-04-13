@@ -8,7 +8,9 @@ namespace FileManager
     class Panel
     {
         
-        //Отрисовка интерфейса
+        /// <summary>
+        /// Отрисовывает интерфейс
+        /// </summary>
         public static void DrowPanel()
         {
            
@@ -67,7 +69,9 @@ namespace FileManager
         }
 
         
-
+        /// <summary>
+        /// Отрисовывает информацию о клавишах
+        /// </summary>
         public static void DrowFunctions()
         {
             Console.SetCursorPosition(30, 41);
@@ -80,18 +84,18 @@ namespace FileManager
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("<F1> Копировать");
-           // Console.Clear();
+
             Console.ResetColor();
-            Console.SetCursorPosition(55, 53);
+            Console.SetCursorPosition(29, 53);
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine("<F2> Удалить");
 
             Console.ResetColor();
-            Console.SetCursorPosition(45, 53);
+            Console.SetCursorPosition(52, 53);
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine("<F3> Размер");
+            Console.WriteLine("<F3> Открыть файл");
 
 
         }

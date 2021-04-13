@@ -21,7 +21,7 @@ namespace FileManager
             
             ShowList(manager.Items, manager.Selected);
 
-         
+           
 
             while (true)
             {
@@ -38,8 +38,7 @@ namespace FileManager
                         break;
 
                     case ConsoleKey.Enter:
-                        manager.SelectOpen();
-                        manager.jso();
+                        manager.SelectOpen(); 
                         break;
                     case ConsoleKey.F2:
                         if (DeleteRequest(manager.Selected))
@@ -47,7 +46,7 @@ namespace FileManager
                             manager.Delete();
                         }
                         break;
-                    case ConsoleKey.RightArrow:
+                    case ConsoleKey.F3:
                         manager.StartProcess();
                         break;
                     case ConsoleKey.F1:
@@ -59,6 +58,7 @@ namespace FileManager
                 ShowList(manager.Items, manager.Selected);
                 
             }
+            
 
         }
 
